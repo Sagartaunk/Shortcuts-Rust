@@ -1,11 +1,10 @@
-use std::io;
-use std::fs::{OpenOptions , File};
+use shortcuts_app::{cli, functions};
 fn main() {
     println!("Welcome to the Shortcuts App !");
     loop{
-        functions::load_file();
+        functions::load();
         let option = cli::input();
-        match option{
+        match option.as_str(){
             ".help" => {
                 cli::help();
             }
@@ -19,11 +18,11 @@ fn main() {
             ".remove" => {
                 functions::remove();
             }
-            ".edit" => {
-                functions::edit();
-            }
             ".list" => {
                 functions::list();
+            }
+            &_ => {
+                functions::run(option.to_string());
             }
         }
     }

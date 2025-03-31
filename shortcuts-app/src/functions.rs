@@ -3,7 +3,6 @@ use crate::{cli , Shortcut};
 use serde_json;
 
 pub fn load() -> Vec<Shortcut> {
-    let mut shortcuts  = Vec::new();
     let file =  match fs::File::open("shortcuts.json") {
         Ok(file) => file ,
         Err(_) => {
@@ -62,5 +61,20 @@ pub fn remove(){
 }
 
 pub fn run(command : String){
-    
+    let shortcuts = load();
+    let shortcut = shortcuts.iter().find(|s| s.name.to_string() == command);
+    match shortcut {
+        Some(s) => {
+            
+        },
+        None => {
+            println!("Shortcut not found. Type .list to list all existing shortcuts.");
+        },
+    }
+}
+pub fn list(){
+    let shortcuts = load();
+    for i in shortcuts.iter(){
+        println!("Name : {} , Command : {}", i.name, i.command);
+    }
 }
