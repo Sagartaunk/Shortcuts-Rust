@@ -23,12 +23,7 @@ pub fn load() -> Vec<Shortcut> {
 }
 
 pub fn save(shortcuts: &Vec<Shortcut>) {
-    let file = fs::File::open("shortcuts.json").unwrap();
-    let writer = io::BufWriter::new(file);
-    match serde_json::to_writer(writer, shortcuts) {
-        Ok(_) => println!("Shortcuts saved successfully."),
-        Err(e) => eprintln!("Error saving shortcuts: {}", e),
-    }
+    fs::write("shortcuts.json", serde_json::to_string(shortcuts).unwrap()).expect("Unable to write file");
 }
 
 pub fn add(){
