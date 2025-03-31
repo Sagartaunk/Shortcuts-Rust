@@ -1,4 +1,4 @@
-use std::{fs , io};
+use std::{fs , io , process::Command};
 use crate::{cli , Shortcut};
 use serde_json;
 
@@ -60,7 +60,7 @@ pub fn run(command : String){
     let shortcut = shortcuts.iter().find(|s| s.name.to_string() == command);
     match shortcut {
         Some(s) => {
-            
+            Command::new(s.name.clone()).args(s.command.split_whitespace()).spawn().expect("Failed to execute command");
         },
         None => {
             println!("Shortcut not found. Type .list to list all existing shortcuts.");

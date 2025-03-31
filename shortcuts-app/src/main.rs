@@ -1,6 +1,8 @@
 use shortcuts_app::{cli, functions};
 fn main() {
     println!("Welcome to the Shortcuts App !");
+    println!("Type '.help' for help and '.exit' to exit the app.");
+    println!("Please enter your command:");
     loop{
         functions::load();
         let option = cli::input();
@@ -26,7 +28,4 @@ fn main() {
             }
         }
     }
-}
-
-pub fn first_run(){
 }
