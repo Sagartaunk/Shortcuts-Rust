@@ -17,7 +17,7 @@ pub fn help(){
     println!("  .exit : Exit the program");
     println!("  .add : Add a new shortcut");
     println!("  .list : List all shortcuts");
-    println!("  .delete : Delete a shortcut");
+    println!("  .remove : Delete a shortcut");
     println!("  Shortcut_name : Run a shortcut");
 
 }

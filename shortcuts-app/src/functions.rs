@@ -60,7 +60,9 @@ pub fn run(command : String){
     let shortcut = shortcuts.iter().find(|s| s.name.to_string() == command);
     match shortcut {
         Some(s) => {
-            Command::new(s.name.clone()).args(s.command.split_whitespace()).spawn().expect("Failed to execute command");
+            let mut arg  : Vec<&str> = vec!["/c " , "start" , "cmd" , "/k"];
+            arg.append(&mut s.command.split_whitespace().collect::<Vec<&str>>());
+            Command::new("cmd").args(arg).spawn().expect("Failed to execute command");
         },
         None => {
             println!("Shortcut not found. Type .list to list all existing shortcuts.");
